@@ -22,6 +22,35 @@ namespace JHMovies.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Entry()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Entry(Movie movie)
+        {
+            if(movie.Category == null)
+            {
+                return View();
+            }
+            else
+            {
+                Storage.AddMovie(movie);
+                return View("Confirmation", movie);
+            }
+
+        }
+
+        public IActionResult List()
+        {
+            return View(Storage.Movies);
+        }
+
+        public IActionResult Podcasts()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

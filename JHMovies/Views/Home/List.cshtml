@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Movie List";
+}
+
+
+@*A separate page that lists out all the movies that have been entered so far (just while the app
+is running – we have not learned yet how to connect it to a database for long-term storage.)*@
+
+
+@model IEnumerable<JHMovies.Models.Movie>
+
+<div class="text-center">
+    <h1 class="display-4">Movie List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Category</td>
+                <td>Title</td>
+                <td>Year</td>
+                <td>Director</td>
+                <td>Rating</td>
+                <td>Edited</td>
+                <td>Lent To</td>
+                <td>Notes</td>
+            </tr>
+        </thead>
+        @foreach (JHMovies.Models.Movie x in Model)
+        {
+
+            //NOTE: Exclude the movie “Independence Day” from ever displaying in the list,
+            //because Joel once argued in a 4
+            //th of July podcast that “Independence Day” beats
+            //“Rocky IV” as the “Most American Movie Ever Made” which is obviously not true!
+            //(#notcoveredinthevideos… but check out the section “DISPLAYING THE
+            //RESPONSES” in Chapter 3 of the Freeman textbook as a great place to start.)
+            @if (x.Title != "Independence Day")
+            {
+                <tr>
+                    <td>@x.Category</td>
+                    <td>@x.Title</td>
+                    <td>@x.Year</td>
+                    <td>@x.Director</td>
+                    <td>@x.Rating</td>
+                    <td>@x.Edited</td>
+                    <td>@x.LentTo</td>
+                    <td>@x.Notes</td>
+                </tr>
+            }
+        }
+    </table>
+
+</div>
