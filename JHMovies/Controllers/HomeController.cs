@@ -17,20 +17,24 @@ namespace JHMovies.Controllers
         {
             _logger = logger;
         }
-
+        //this shows the home view
         public IActionResult Index()
         {
             return View();
         }
+        //this is called only for 'get' calls and shows the movie entry view
         [HttpGet]
         public IActionResult Entry()
         {
             return View();
         }
+        //this method is only called for post method calls and displays the confirmation page or the same page if errors were introduced 
         [HttpPost]
         public IActionResult Entry(Movie movie)
         {
-            if(movie.Category == null)
+            //this only takes us the success screen if the information is entered correctly. this protects from people using something like postman to enter in values we don't want
+            if(movie.Category == null   || movie.Title == null  || movie.Director == null   || movie.Rating == null || movie.Year == 0 ||
+                movie.Category == ""    || movie.Title == ""    || movie.Director == ""     || movie.Rating == "")
             {
                 return View();
             }
@@ -41,17 +45,17 @@ namespace JHMovies.Controllers
             }
 
         }
-
+        //this shows the list page
         public IActionResult List()
         {
             return View(Storage.Movies);
         }
-
+        //this shows the podcasts page
         public IActionResult Podcasts()
         {
             return View();
         }
-
+        //this shows the built in privicy page
         public IActionResult Privacy()
         {
             return View();
