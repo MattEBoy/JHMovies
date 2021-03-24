@@ -73,10 +73,20 @@ namespace JHMovies.Controllers
                 if (searchedMovie != null)
                 {
                     //the movie already exists so it's an edit
-                    _context.Remove(searchedMovie);
-                    _context.SaveChanges();
+                    //_context.Remove(searchedMovie);
+                    //_context.SaveChanges();
 
-                    _context.Movies.Add(movie);
+                    //_context.Movies.Add(movie);
+
+                    _context.Movies.FirstOrDefault(m => m.MovieID == movieId).Rating = movie.Rating;
+                    _context.Movies.FirstOrDefault(m => m.MovieID == movieId).Director = movie.Director;
+                    _context.Movies.FirstOrDefault(m => m.MovieID == movieId).Edited = movie.Edited;
+                    _context.Movies.FirstOrDefault(m => m.MovieID == movieId).Year = movie.Year;
+                    _context.Movies.FirstOrDefault(m => m.MovieID == movieId).Title = movie.Title;
+                    _context.Movies.FirstOrDefault(m => m.MovieID == movieId).LentTo = movie.LentTo;
+                    _context.Movies.FirstOrDefault(m => m.MovieID == movieId).Notes = movie.Notes;
+                    _context.Movies.FirstOrDefault(m => m.MovieID == movieId).Category = movie.Category;
+
                     _context.SaveChanges();
                     return View("Confirmation", movie);
                 }
