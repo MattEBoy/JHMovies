@@ -12,7 +12,8 @@ namespace JHMovies.Models
         // o The “Edited”, “Lent To”, and “Notes” fields are optional.All other fields must be
         //entered.
         //o Notes should be limited to 25 characters.
-
+        [Key]
+        public int MovieID { get; set; }
 
         [Required]
         public String Rating { get; set; }
