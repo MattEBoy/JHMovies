@@ -15,17 +15,17 @@ is running – we have not learned yet how to connect it to a database for long-
 <div class="text-center">
     <h1 class="display-4">Movie List</h1>
 
-    <table>
+    <table class="table-bordered">
         <thead>
             <tr>
                 <td>Category</td>
-                <td>Title</td>
-                <td>Year</td>
-                <td>Director</td>
-                <td>Rating</td>
-                <td>Edited</td>
-                <td>Lent To</td>
-                <td>Notes</td>
+                <td>Title </td>
+                <td>Year </td>
+                <td>Director </td>
+                <td>Rating </td>
+                <td>Edited </td>
+                <td>Lent To </td>
+                <td>Notes </td>
             </tr>
         </thead>
         @foreach (JHMovies.Models.Movie x in Model)
@@ -39,16 +39,32 @@ is running – we have not learned yet how to connect it to a database for long-
             //RESPONSES” in Chapter 3 of the Freeman textbook as a great place to start.)
             @if (x.Title != "Independence Day")
             {
-                <tr>
-                    <td>@x.Category</td>
-                    <td>@x.Title</td>
-                    <td>@x.Year</td>
-                    <td>@x.Director</td>
-                    <td>@x.Rating</td>
-                    <td>@x.Edited</td>
-                    <td>@x.LentTo</td>
-                    <td>@x.Notes</td>
-                </tr>
+    <tr>
+        <td>@x.Category </td>
+        <td>@x.Title </td>
+        <td>@x.Year </td>
+        <td>@x.Director </td>
+        <td>@x.Rating </td>
+        <td>@x.Edited </td>
+        <td>@x.LentTo </td>
+        <td>@x.Notes </td>
+        <td>
+            <form id="@x.MovieID" asp-action="Entry" method="get">
+                <input type="hidden" name="movieId" value=@x.MovieID>
+                <button type="submit" class="btn-success btn-sm pull-right" sylte="float:right">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form id="@x.MovieID" asp-action="Entry" method="post">
+                <input type="hidden" name="movieId" value=@x.MovieID>
+                <input type="hidden" name="type" value="remove" />
+                <span class="card-text p-1">
+                    @*@Model.Title*@
+                    <button type="submit" class="btn-success btn-sm pull-right" sylte="float:right">Remove</button>
+                </span>
+            </form>
+        </td>
+    </tr>
             }
         }
     </table>
